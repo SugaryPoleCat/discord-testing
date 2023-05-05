@@ -1,3 +1,4 @@
+require("dotenv").config();
 const { REST } = require("@discordjs/rest");
 const { WebSocketManager } = require("@discordjs/ws");
 const { GatewayDispatchEvents, GatewayIntentBits, InteractionType, MessageFlags, Client } = require("@discordjs/core");

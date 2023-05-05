@@ -1,0 +1,1 @@
+console.log(`https://discord.com/api/oauth2/authorize?client_id=${String(process.env.CLIENTID)}&permissions=8&scope=bot%20applications.commands`);
