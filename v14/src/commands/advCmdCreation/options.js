@@ -1,6 +1,6 @@
 const { SlashCommandBuilder } = require("discord.js");
 const data = new SlashCommandBuilder()
-	.setName("echo")
+	.setName("advOptions")
 	.setDescription("Replies with your input!")
 	// a string
 	.addStringOption(option => option.setName("Input").setDescription("the input to echo back"))
