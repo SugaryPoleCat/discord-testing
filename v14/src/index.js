@@ -6,6 +6,7 @@ const { Client, Events, GatewayIntentBits, Collection } = require("discord.js");
 const { TOKEN } = require("../config.json");
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 client.commands = new Collection();
+client.cooldowns = new Collection();
 const eventsPath = path.join(__dirname, "events");
 const eventFiles = fs.readdirSync(eventsPath).filter((f) => f.endsWith(".js"));
 for (const file of eventFiles) {
