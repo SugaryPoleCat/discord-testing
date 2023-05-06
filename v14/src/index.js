@@ -16,12 +16,6 @@ for (const file of eventFiles) {
 	else {
 		client.on(event.name, async (...args) => {
 			console.log("[ARGS:]\n", ...args);
-			// hmm im not sure yet how to access the args here.
-
-			// console.log("[ARGS.interaction]:\n", ...args.interaction);
-			// 	if (...args.hasOwnProperty("interaction")) {
-			// 	console.log("[ARGS.interaction]:\n", ...args);
-			// }
 			await event.execute(...args);
 		});
 	}
@@ -36,7 +30,13 @@ for (const folder of commandFolders) {
 		const command = require(filePath);
 		// console.log(command);
 		if ("data" in command && "execute" in command) { client.commands.set(command.data.name, command); }
+		else if ("data" in command && "autocomplete" in command) { client.commands.set(command.data.name, command); }
 		else { console.error(`[WARNING] at ${new Date().toUTCString()}\nThe command at ${filePath} is missing a required "data" or "execute" property`); }
 	}
 }
+let cmds = 0;
+for (const c of client.commands) {
+	cmds++;
+}
+console.log("cmds: " + cmds);
 client.login(TOKEN);

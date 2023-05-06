@@ -10,7 +10,7 @@ module.exports = {
 		.addStringOption(option => option
 			.setName("version")
 			.setDescription("description")
-			.autocomplete(true)),
+			.setAutocomplete(true)),
 	async autocomplete(interaction) {
 		const focusedOption = interaction.options.getFocused();
 		let choices;
