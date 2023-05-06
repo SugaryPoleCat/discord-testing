@@ -11,6 +11,7 @@ switch (TOKEN) {
 }
 const client = new Client({ intents: [GatewayIntentBits.GuildMessages, GatewayIntentBits.GuildMembers, GatewayIntentBits.Guilds] });
 // must figure out a way for this to work.
+// i mean it works, its just ts thats being a bitch.
 client.commands = new Collection();
 const eventsPath = path.join(__dirname, "events");
 const eventsFolder = fs.readdirSync(eventsPath).filter((f) => f.endsWith(".js"));
