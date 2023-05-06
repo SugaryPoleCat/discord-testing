@@ -6,18 +6,22 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon dist/start.js --watch dist/",
-    "build": "tsc -p ."
+    "build": "tsc -p .",
+    "depuninstall": "npm uninstall typescript dotenv discord.js @types/node eslint nodemon",
+    "depinstall": "npm i discord.js dotenv && npm i --save-dev @types/node eslint nodemon typescript",
+    "depupdate": "npm run depuninstall && npm run depinstall"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "discord.js": "^14.11.0",
-    "dotenv": "^16.0.3",
-    "typescript": "^5.0.4"
+    "dotenv": "^16.0.3"
   },
   "devDependencies": {
+    "@types/node": "^20.1.0",
     "eslint": "^8.40.0",
-    "nodemon": "^2.0.22"
+    "nodemon": "^2.0.22",
+    "typescript": "^5.0.4"
   }
 }

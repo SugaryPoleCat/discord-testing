@@ -1,4 +1,5 @@
 require("dotenv").config();
+// typescript says GatewayIntentBits should not be imported this way, but even the docs say it should.... wtf
 import { Client, GatewayIntentBits, Collection } from "discord.js";
 // import load from "./cmdload.js";
 import path from "path";

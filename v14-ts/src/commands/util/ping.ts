@@ -1,8 +1,7 @@
-import { SlashCommandBuilder } from "discord.js";
+import cmd from "../../utilities/cmd";
+import path from "path";
 module.exports = {
-	data: new SlashCommandBuilder()
-		.setName("ping")
-		.setDescription("description"),
+	data: cmd({ name: path.basename(__filename), description: "PING!" }),
 	async fox(interaction) {
 		console.log(interaction);
 		await interaction.reply("pong");
