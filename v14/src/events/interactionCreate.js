@@ -1,8 +1,10 @@
-const { Events } = require("discord.js");
+const { Events, Collection } = require("discord.js");
 module.exports = {
 	name: Events.InteractionCreate,
 	async execute(interaction) {
 		if (!interaction.isChatInputCommand()) { return; }
+		// hmm i can make the auto thing here instead of index.
+		
 		const command = interaction.client.commands.get(interaction.commandName);
 		if (!command) {
 			console.error(`No command matching ${interaction.commandName} was found`);

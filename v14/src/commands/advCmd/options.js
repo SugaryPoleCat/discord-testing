@@ -1,9 +1,9 @@
 const { SlashCommandBuilder } = require("discord.js");
 const data = new SlashCommandBuilder()
-	.setName("advOptions")
+	.setName("advoptions")
 	.setDescription("Replies with your input!")
 	// a string
-	.addStringOption(option => option.setName("Input").setDescription("the input to echo back"))
+	.addStringOption(option => option.setName("input").setDescription("the input to echo back"))
 	.addBooleanOption(option => option.setName("bool").setDescription("this is a bool"))
 	// mentionable channel
 	.addChannelOption(option => option.setName("channel").setDescription("this is channel"))

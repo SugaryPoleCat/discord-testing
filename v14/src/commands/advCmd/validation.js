@@ -1,6 +1,6 @@
 const { SlashCommandBuilder, ChannelType } = require("discord.js");
 const data = new SlashCommandBuilder()
-	.setName("advVal")
+	.setName("advval")
 	.setDescription("desc")
 	.addStringOption(option => option
 		.setName("input")
@@ -11,11 +11,11 @@ const data = new SlashCommandBuilder()
 	.addChannelOption(option => option.setName("channel")
 		.setDescription("description")
 		.addChannelTypes(ChannelType.GuildText))
-	.addIntegerOption(option => option.serName("int")
+	.addIntegerOption(option => option.setName("int")
 		.setDescription("description")
 		.setMaxValue(100)
 		.setMinValue(1))
-	.addNumberOption(option => option.serName("num")
+	.addNumberOption(option => option.setName("num")
 		.setDescription("description")
 		.setMaxValue(100)
 		.setMinValue(1));

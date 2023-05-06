@@ -1,6 +1,6 @@
 const { SlashCommandBuilder } = require('discord.js');
 const data = new SlashCommandBuilder()
-	.setName('advLcl')
+	.setName('advlcl')
 	.setNameLocalizations({
 		pl: 'pies',
 		de: 'hund',

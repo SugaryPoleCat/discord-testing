@@ -1,6 +1,6 @@
 const { SlashCommandBuilder } = require('discord.js');
 const data = new SlashCommandBuilder()
-	.setName('advSub')
+	.setName('parsesub')
 	.setDescription('Get info about a user or a server!')
 	.addSubcommand(subcommand =>
 		subcommand
@@ -12,10 +12,12 @@ const data = new SlashCommandBuilder()
 			.setName('server')
 			.setDescription('Info about the server'));
 module.exports = {
-	cooldown: 5,
 	data: data,
 	async execute(interaction) {
-		console.log("interaction in command: ", interaction);
-		await interaction.reply({ content: "Secret Pong!", ephemeral: true });
+		if (interaction.options.getSubcommand() === "user") {
+			const user = interaction.options.getUser("target");
+			if (user) { await interaction.reply(`Username: ${user.username}`); }
+			else { interaction.reply(`Your username: ${user.username}`); }
+		} else if (interaction.options.getSubcommand() === "server") { await interaction.reply(`Server name: ${interaction.guild.name}`); }
 	}
 };

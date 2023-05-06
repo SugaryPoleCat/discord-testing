@@ -13,7 +13,18 @@ for (const file of eventFiles) {
 	const filePath = path.join(eventsPath, file);
 	const event = require(filePath);
 	if (event.once) { client.once(event.name, async (...args) => { await event.execute(...args); }); }
-	else { client.on(event.name, async (...args) => { await event.execute(...args); }); }
+	else {
+		client.on(event.name, async (...args) => {
+			console.log("[ARGS:]\n", ...args);
+			// hmm im not sure yet how to access the args here.
+
+			// console.log("[ARGS.interaction]:\n", ...args.interaction);
+			// 	if (...args.hasOwnProperty("interaction")) {
+			// 	console.log("[ARGS.interaction]:\n", ...args);
+			// }
+			await event.execute(...args);
+		});
+	}
 }
 const foldersPath = path.join(__dirname, "commands");
 const commandFolders = fs.readdirSync(foldersPath);
@@ -23,7 +34,7 @@ for (const folder of commandFolders) {
 	for (const file of commandFiles) {
 		const filePath = path.join(commandsPath, file);
 		const command = require(filePath);
-		console.log(command);
+		// console.log(command);
 		if ("data" in command && "execute" in command) { client.commands.set(command.data.name, command); }
 		else { console.error(`[WARNING] at ${new Date().toUTCString()}\nThe command at ${filePath} is missing a required "data" or "execute" property`); }
 	}
