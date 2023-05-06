@@ -12,7 +12,7 @@ const eventFiles = fs.readdirSync(eventsPath).filter((f) => f.endsWith(".js"));
 for (const file of eventFiles) {
 	const filePath = path.join(eventsPath, file);
 	const event = require(filePath);
-	if (event.once) { client.once(event.name, async (...args) => { await event.execute(...args); }); }
+	if (event.once) { client.once(event.name, async (...args) => { await event.fox(...args); }); }
 	else {
 		client.on(event.name, async (...args) => {
 			console.log("[ARGS:]\n", ...args);
