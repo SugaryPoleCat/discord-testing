@@ -2,9 +2,9 @@ const { Events, Collection } = require("discord.js");
 module.exports = {
 	name: Events.InteractionCreate,
 	async execute(interaction) {
-		if (!interaction.isChatInputCommand()) { return; }
-		// hmm i can make the auto thing here instead of index.
-		
+		// in the guide, they made it stupid and made you change this
+		// whole thing and retype a lot of the code.
+		if (!interaction.isChatInputCommand() && !interaction.isAutocomplete()) { return; }
 		const command = interaction.client.commands.get(interaction.commandName);
 		if (!command) {
 			console.error(`No command matching ${interaction.commandName} was found`);
@@ -25,7 +25,10 @@ module.exports = {
 		}
 		timestamps.set(interaction.user.id, now);
 		setTimeout(() => { timestamps.delete(interaction.user.id, cooldownAmount); });
-		try { await command.execute(interaction); }
+		try {
+			if (interaction.isChatInputCommand()) { await command.execute(interaction); }
+			else if (interaction.isAutocomplete()) { await command.autocomplete(interaction); }
+		}
 		catch (err) { console.error(`[WARNING] at ${new Date().toUTCString()}\n` + err); }
 	}
 };
