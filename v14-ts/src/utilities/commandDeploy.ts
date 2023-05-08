@@ -9,10 +9,10 @@ const rest = new REST().setToken(TOKEN);
 (async () => {
 	try {
 		console.log(`${new Date().toUTCString()}\nStarted refreshing ${commands.count} application (/) commands`);
-		const data:any = await rest.put(
+		const data: any = await rest.put(
 			Routes.applicationGuildCommands(CLIENT, DEVGUILD),
-			{ body: commands.commands },
+			{ body: commands.JSON },
 		);
 		console.log(`${new Date().toUTCString()}\nFinished refreshing ${data.length} application (/) commands`);
-	} catch (err) { throw new Error(err); }
-});
+	} catch (err) { return console.error(err); }
+})();
