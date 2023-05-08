@@ -1,29 +1,41 @@
 require("dotenv").config();
-import { Client, GatewayIntentBits, Collection } from "discord.js";
+import { ShardingManager } from "discord.js";
 import path from "path";
-import fs from "fs";
-import { load } from "./utilities/commandLoad";
-const TOKEN = String(process.env.TOKEN) || "BAD_TOKEN";
-switch (TOKEN) {
-	case "BAD_TOKEN":
-		throw new Error("Invalid token");
-	default: break;
-}
-const client = new Client({ intents: [GatewayIntentBits.GuildMessages, GatewayIntentBits.GuildMembers, GatewayIntentBits.Guilds] });
-const commands = load();
-const eventsPath = path.join(__dirname, "events");
-const eventsFolder = fs.readdirSync(eventsPath).filter((f) => f.endsWith(".js"));
-for (const file of eventsFolder) {
-	const eventFilepath = path.join(eventsPath, file);
-	const event = require(eventFilepath);
-	switch (event.once) {
-		case true:
-			client.once(event.name, async (...args) => { await event.cat(...args, commands.commands); });
-			break;
-		default:
-			client.on(event.name, async (...args) => { await event.cat(...args, commands.commands); });
-			break;
-	}
-}
-console.log(`Loaded ${commands.count} commands out of ${commands.total}`);
-client.login(TOKEN);
+const TOKEN = String(process.env.TOKEN);
+console.log("lauinching");
+const shardManager = new ShardingManager(path.join(__dirname, "bot.js"), {
+	token: TOKEN,
+	execArgv: ["--trace-warnings"],
+	shardArgs: ["--ansi", "--color"]
+});
+console.log("launching");
+// first create a shard
+shardManager.on("shardCreate", (shard) => { console.log(`Launched shard ${shard.id}`); });
+// then spawn it.
+shardManager
+	.spawn()
+	.then((shards) => {
+		// this looks for what messages the shards send between each otehr.
+		shards.forEach((shard) => {
+			shard.on("message", (message) => {
+				// _eval = shard is attempting to evaluate it
+				// _result = obviouisly the result ov eval.
+				console.log("[SHARD ", shard.id, "]\n");
+				console.log("[MESSAGE EVAL]\n", message._eval, "\n\n")
+				console.log("[MESSAGE RESULT]\n", message._result, "\n\n");
+			});
+		});
+	})
+	.catch(console.error);
+
+	// this will kill a shard in case it behaves bad
+	// client.shard.broadcastEval(c => {
+	// 	if (c.shard.ids.includes(0)) process.exit();
+	// });
+
+	// this will pass arguments into a .broadcasteval on a shard.
+	// function funcName(c, { arg }) {
+	// 	// ...
+	// }
+	
+	// client.shard.broadcastEval(funcName, { context: { arg: 'arg' } });

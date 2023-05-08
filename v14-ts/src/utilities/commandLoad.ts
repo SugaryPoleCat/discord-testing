@@ -3,9 +3,9 @@ import path from "path";
 import { Collection } from "discord.js";
 export function load() {
 	const cmds = {
-		data: [],
-		filePaths: [],
+		JSON: [],
 		commands: new Collection(),
+		cooldowns: new Collection(),
 		count: 0,
 		total: 0,
 	};
@@ -21,14 +21,14 @@ export function load() {
 			if ("data" in command && "fox" in command) {
 				cmds.count++;
 				cmds.commands.set(command.data.name, command);
+				cmds.JSON.push(command.data.toJSON());
 			}
 			else if ("data" in command && "dog" in command) {
 				cmds.count++;
 				cmds.commands.set(command.data.name, command);
+				cmds.JSON.push(command.data.toJSON());
 			}
 			else { console.error(`[WARNING] at$ ${new Date().toUTCString()}\nThe command ${command.name} at ${filePath} is missing "data" or "fox" or "dog" property.`); break; }
-			cmds.filePaths.push(filePath);
-			cmds.data.push(file);
 		}
 	}
 	return cmds;
