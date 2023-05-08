@@ -1,6 +1,7 @@
 {
 	"TOKEN":"token",
-	"CLIENT":"id",
+	"CLIENTID":"id",
 	"DEVGUILD":"id",
-	"NEXTTOKEN":"token"
+	"NEXTTOKEN":"token",
+	"NEXTID":"id"
 }
