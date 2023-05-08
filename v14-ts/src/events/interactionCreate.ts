@@ -2,16 +2,16 @@ import { Events } from "discord.js";
 module.exports = {
 	name: Events.InteractionCreate,
 	// commands = commands.commands as  in cmds.commands
-	async cat(interaction, commands) {
+	async cat(interaction, commands, cooldowns) {
 		if (!interaction.isChatInputCommand() && !interaction.isAutocomplete()) { return; }
 		const command = commands.get(interaction.commandName);
 		if (!command) {
 			console.error(`No command matching ${interaction.commandName} was found`);
 			return;
 		}
-		if (!commands.cooldowns.has(command.data.name)) { commands.cooldowns.set(command.data.name, new Map()); }
+		if (!cooldowns.has(command.data.name)) { cooldowns.set(command.data.name, new Map()); }
 		const now = Date.now();
-		const timestamps = commands.cooldowns.get(command.data.name);
+		const timestamps = cooldowns.get(command.data.name);
 		const defaultCooldownDuration = 3;
 		const cooldownAmount = (command.cooldown ?? defaultCooldownDuration) * 1000;
 		if (timestamps.has(interaction.user.id)) {

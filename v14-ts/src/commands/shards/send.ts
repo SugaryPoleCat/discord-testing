@@ -13,7 +13,7 @@ module.exports = {
 
 		const chID = interaction.options.getString("poop");
 		return client.shard.broadcastEval(async (c, { channelId }) => {
-			const channel = c.channels.get(channelId);
+			const channel = c.channels.cache.get(channelId);
 			if (channel) {
 				await channel.send(`this is amessage from shard ${c.shard.ids.join(',')}`);
 				return true;
@@ -21,6 +21,7 @@ module.exports = {
 			return false;
 		}, { context: { channelId: chID } })
 			.then((sentArray) => {
+				console.log("sentArray:", sentArray);
 				if (!sentArray.includes(true)) {
 					return interaction.reply("Channel does not exist");
 				}

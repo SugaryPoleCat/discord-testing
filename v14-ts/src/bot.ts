@@ -19,7 +19,7 @@ for (const file of eventsFolder) {
 	const event = require(eventFilepath);
 	switch (event.once) {
 		case true:
-			client.once(event.name, async (...args) => { await event.cat(...args, commands.commands); });
+			client.once(event.name, async (...args) => { await event.cat(...args); });
 			break;
 		default:
 			client.on(event.name, async (...args) => { await event.cat(...args, commands.commands, cooldowns); });
