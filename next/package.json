@@ -9,14 +9,9 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "eslint": "^8.39.0",
-    "nodemon": "^2.0.22"
-  },
   "dependencies": {
     "@discordjs/core": "^0.6.0",
     "@discordjs/rest": "^1.7.1",
-    "@discordjs/ws": "^0.8.2",
-    "dotenv": "^16.0.3"
+    "@discordjs/ws": "^0.8.2"
   }
 }

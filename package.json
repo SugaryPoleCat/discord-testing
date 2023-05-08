@@ -1,0 +1,27 @@
+{
+  "name": "discord-testing",
+  "version": "1.0.0",
+  "description": "Testing discord things atm",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "npm i dotenv && npm i --save-dev eslint nodemon",
+    "uinstall": "npm uninstall eslint nodemon dotenv",
+    "update": "npm run uninstall && npm run install",
+    "cleants": "rm -fr v14-ts/dist",
+    "v14tsbuild": "tsc -p v14-ts/.",
+    "v14tsstart": "nodemon v14-ts/dist/start.js --watch v14-ts/dist/ --delay 2",
+    "nextstart": "nodemon next/index.js --watch next/ --delay 2",
+    "v14start": "nodemon v14/src/index.js --watch v14/src --delay 0"
+  },
+  "keywords": [],
+  "author": "SugaryPoleCat",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.40.0",
+    "nodemon": "^2.0.22"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.3"
+  }
+}
