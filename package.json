@@ -11,12 +11,12 @@
     "cleants": "rm -fr v14-ts/dist && rm -fr next-ts/dist",
     "v14start": "nodemon v14/src/index.js --watch v14/src --delay 2",
     "v14tsbuild": "tsc -p v14-ts/.",
-    "v14tsstart": "nodemon v14-ts/dist/start.js --watch v14-ts/dist/ --delay 0",
+    "v14tsstart": "nodemon v14-ts/dist/start.js --watch v14-ts/dist/ --delay 2",
     "v14tsdeploy": "node v14-ts/dist/utilities/commandDeploy.js",
     "v14tsdelete": "node v14-ts/dist/utilities/commandDelete.js",
     "nextstart": "nodemon next/index.js --watch next/ --delay 2",
     "nexttsbuild": "tsc -p next-ts/.",
-    "nexttsstart": "nodeomn next-ts/dist/start.js --watch next-ts/dist/ --delay 0"
+    "nexttsstart": "nodemon next-ts/dist/start.js --watch next-ts/dist/ --delay 2"
   },
   "keywords": [],
   "author": "SugaryPoleCat",
