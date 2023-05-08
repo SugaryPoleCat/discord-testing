@@ -10,9 +10,11 @@
     "update": "npm run uninstall && npm run install",
     "cleants": "rm -fr v14-ts/dist",
     "v14tsbuild": "tsc -p v14-ts/.",
-    "v14tsstart": "nodemon v14-ts/dist/start.js --watch v14-ts/dist/ --delay 2",
+    "v14tsstart": "nodemon v14-ts/dist/start.js --watch v14-ts/dist/ --delay 0",
     "nextstart": "nodemon next/index.js --watch next/ --delay 2",
-    "v14start": "nodemon v14/src/index.js --watch v14/src --delay 0"
+    "v14start": "nodemon v14/src/index.js --watch v14/src --delay 2",
+    "nexttsbuild": "tsc -p next-ts/.",
+    "nexttsstart": "nodeomn next-ts/dist/start.js --watch next-ts/dist/ --delay 0"
   },
   "keywords": [],
   "author": "SugaryPoleCat",

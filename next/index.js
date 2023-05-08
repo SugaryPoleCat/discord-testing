@@ -2,7 +2,7 @@ require("dotenv").config();
 const { REST } = require("@discordjs/rest");
 const { WebSocketManager } = require("@discordjs/ws");
 const { GatewayDispatchEvents, GatewayIntentBits, InteractionType, MessageFlags, Client } = require("@discordjs/core");
-const TOKEN = String(process.env.TOKEN) || "BAD_TOKEN";
+const TOKEN = String(process.env.NEXTTOKEN) || "BAD_TOKEN";
 if (TOKEN == "BAD_TOKEN") { throw new Error("bad token"); }
 const rest = new REST({ version: "10" }).setToken(String(process.env.TOKEN));
 const gateway = new WebSocketManager({

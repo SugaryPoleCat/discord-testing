@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "incremental": true,
+    "watch": true,
+    "outDir": "./dist/",
+    "sourceMap": true,
+    "sourceRoot": "./src/",
+    "resolveJsonModule": true,
+    "module": "CommonJS",
+    "target": "ES2022",
+    "esModuleInterop": true,
+    "noEmitOnError": false
+  },
+  "include": ["src/**/*.ts"]
+}
