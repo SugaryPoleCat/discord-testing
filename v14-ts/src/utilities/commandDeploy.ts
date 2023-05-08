@@ -4,7 +4,15 @@ import { load } from "./commandLoad";
 const CLIENT = String(process.env.CLIENT);
 const DEVGUILD = String(process.env.DEVGUILD);
 const TOKEN = String(process.env.TOKEN);
-const cmds = load();
-for (const cmd of cmds.filePaths) {
-
-}
+const commands = load();
+const rest = new REST().setToken(TOKEN);
+(async () => {
+	try {
+		console.log(`${new Date().toUTCString()}\nStarted refreshing ${commands.count} application (/) commands`);
+		const data:any = await rest.put(
+			Routes.applicationGuildCommands(CLIENT, DEVGUILD),
+			{ body: commands.commands },
+		);
+		console.log(`${new Date().toUTCString()}\nFinished refreshing ${data.length} application (/) commands`);
+	} catch (err) { throw new Error(err); }
+});
