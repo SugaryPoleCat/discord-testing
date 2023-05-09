@@ -5,27 +5,30 @@
   "main": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "install": "npm i dotenv && npm i --save-dev eslint nodemon",
-    "uinstall": "npm uninstall eslint nodemon dotenv",
+    "install": "npm i dotenv @discordjs/core @discordjs/ws @discordjs/rest discord.js && npm i --save-dev eslint nodemon @types/node",
+    "uninstall": "npm uninstall eslint nodemon dotenv @discordjs/core @discordjs/ws @discordjs/rest discord.js @types/node",
     "update": "npm run uninstall && npm run install",
     "cleants": "rm -fr v14-ts/dist && rm -fr next-ts/dist",
-    "v14start": "nodemon v14/src/index.js --watch v14/src --delay 2",
-    "v14tsbuild": "tsc -p v14-ts/.",
-    "v14tsstart": "nodemon v14-ts/dist/start.js --watch v14-ts/dist/ --delay 2",
-    "v14tsdeploy": "node v14-ts/dist/utilities/commandDeploy.js",
-    "v14tsdelete": "node v14-ts/dist/utilities/commandDelete.js",
-    "nextstart": "nodemon next/index.js --watch next/ --delay 2",
-    "nexttsbuild": "tsc -p next-ts/.",
-    "nexttsstart": "nodemon next-ts/dist/start.js --watch next-ts/dist/ --delay 2"
+    "v14build": "tsc -p v14-ts/.",
+    "v14start": "nodemon v14-ts/dist/start.js --watch v14-ts/dist/ --delay 2",
+    "v14deploy": "node v14-ts/dist/utilities/commandDeploy.js",
+    "v14delete": "node v14-ts/dist/utilities/commandDelete.js",
+    "nextbuild": "tsc -p next-ts/.",
+    "nextstart": "nodemon next-ts/dist/start.js --watch next-ts/dist/ --delay 2"
   },
   "keywords": [],
   "author": "SugaryPoleCat",
   "license": "ISC",
+  "dependencies": {
+    "@discordjs/core": "^0.6.0",
+    "@discordjs/rest": "^1.7.1",
+    "@discordjs/ws": "^0.8.3",
+    "discord.js": "^14.11.0",
+    "dotenv": "^16.0.3"
+  },
   "devDependencies": {
+    "@types/node": "^20.1.1",
     "eslint": "^8.40.0",
     "nodemon": "^2.0.22"
-  },
-  "dependencies": {
-    "dotenv": "^16.0.3"
   }
 }
